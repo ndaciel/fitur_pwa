@@ -1,0 +1,62 @@
+<style>
+</style>
+
+<div class="container">
+	<div class="row">
+		<div class="col s12 m12 l5">
+			<div class="card-panel">
+				<h5 align="center">Form Input Mahasiswa</h5>
+				<div class="row">
+				<form class="col s12" id='frmUtama'>
+                <div class="row">
+                  <div class="input-field col s12">
+                    <i class="material-icons prefix">perm_identity</i>
+                    <input id="nim" name="nim" type="number" min="0" required />
+                    <label for="nim">NIM</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s12">
+                    <i class="material-icons prefix">person</i>
+                    <input id="nama" name="nama" type="text" maxlength="50" required>
+                    <label for="nama">Nama</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s12">
+					<i class="material-icons prefix">cake</i>&nbsp;
+					<input id="tanggalLahir" name="tanggalLahir" type="date" maxlength="10" pattern="[0-9]{2}/[0-9]{2}/[0-9]{4}" required>
+                    <label for="tanggalLahir">Tanggal Lahir</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s12">
+                    <i class="material-icons prefix">star</i>
+                    <input id="ipk" name="ipk" type="number" maxlength="3" step="0.1" min="0" max="4" required>
+                    <label for="ipk">IPK</label>
+                  </div>
+                  <div class="row">
+                    <div class="col s12">
+                        <button class="btn cyan waves-effect waves-light right" id='btnTambah' type="submit" >Tambah</button>
+                    </div>
+                  </div>
+                </div>
+				</form>
+				</div>
+			</div>
+        </div>		
+		<div class="card-panel col s12 m12 l7">
+			<table class="bordered highlight">
+            <thead>
+                <tr><th>NIM</th><th>Nama</th><th>Tanggal Lahir</th><th>IPK</th><th></th></tr>         
+            </thead>
+            <tbody id="tabel"></tbody>
+			</table>
+			<p>
+			<button class="btn red waves-effect waves-light right" id='hapusData' type="submit" >Hapus Semua Data</button>
+			</p>
+		 </div>
+	</div>		
+</div>
+
+

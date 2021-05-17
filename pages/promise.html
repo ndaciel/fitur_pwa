@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Fitur PWA</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
+  <link rel="stylesheet" href="../css/materialize.min.css">
+  <link rel="stylesheet" href="../styles/style.css"/>
+  <link rel="icon" href="../favicon.ico"/>
+  <!-- Add to home screen untuk Safari iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes"/>
+  <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+  <meta name="apple-mobile-web-app-title" content="Template PWA"/>
+  <link rel="apple-touch-icon" href="../images/icons/icon-152x152.png"/>
+  <meta name="msapplication-TileImage" content="../images/icons/icon-144x144.png"/>
+  <meta name="msapplication-TileColor" content="#2F3BA2"/>
+  <meta name="theme-color" content="#2F3BA2"/>
+  <link rel="manifest" href="../manifest.json"/>
+</head>
+<body>
+	<nav>
+	  <div class="nav-wrapper red darken">
+		<a href="#" data-activates="slide-out" class="button-collapse show-on-large"><i class="material-icons">menu</i></a>
+		<span class="brand-logo center">Fitur PWA</span>
+      </div>
+    </nav>
+	<ul id="slide-out" class="side-nav">
+		<li>
+			<div class="userView">
+			  <div class="background"></div>
+			  <img src="../images/person-flat.png" alt="Avatar" height="62" width="62">
+			  Invent-integrasi<br/>
+			</div>
+		</li>
+		<li><a href="../index.html">Home</a></li>
+		<li><a href="#router">Router2</a></li>
+		<li><a href="/promise.html">Run Promise</a></li>
+		<li><a href="/indexdb.html">Index Db</a></li>
+		<li><a href="/pushnotif.html">Push notifikasi</a></li>
+		<li><a href="/offline.html">Mode Offline</a></li>
+		<li><a href="/a2hs.html">Add to Homescreen</a></li>
+		<li><a href="/appshell.html">App Shell</a></li>
+		<li><a href="/workbox.html">Workbox</a></li>
+	</ul>	
+
+    <main class="container">
+		<div class="div-container" id="page">
+            <button id="btn">Run promise!</button>
+            <div id="log"></div>
+        </div>
+    </main>
+
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/materialize.min.js"></script>
+    <script src="../js/app.js"></script>
+	<script src="../js/routepage.js"></script>
+	
+	<script>
+	$('.button-collapse').sideNav({
+      menuWidth: 300,
+      edge: 'left',
+      closeOnClick: true,
+      draggable: true
+	  }
+	);
+	</script>
+	<script>
+	function openTab(evt, cityName) {
+		var i, tabcontent, tablinks;
+		tabcontent = document.getElementsByClassName("tabcontent");
+		for (i = 0; i < tabcontent.length; i++) {
+			tabcontent[i].style.display = "none";
+		}
+		tablinks = document.getElementsByClassName("tablinks");
+		for (i = 0; i < tablinks.length; i++) {
+			tablinks[i].className = tablinks[i].className.replace(" active", "");
+		}
+		document.getElementById(cityName).style.display = "block";
+		evt.currentTarget.className += " active";
+	}
+	</script>
+
+    <!-- script untuk jalankan promise -->
+    <script>
+        var promiseCount = 0;
+        function testPromise() {
+            var thisPromiseCount = ++promiseCount;
+            var log = document.getElementById('log');
+            log.insertAdjacentHTML('beforeend', thisPromiseCount + '- Started : Sync code started<br/>');
+            // Create new promise: we promise a numeric count of this promise, starting from 1 (after waiting 3s)
+            let p1 = new Promise(
+                // The resolver function is called with the ability to resolve or
+                // reject the promise
+               (resolve, reject) => {
+                    log.insertAdjacentHTML('beforeend', thisPromiseCount +
+                        '- Promise started : Async code started<br/>');
+                    // This is only an example to create asynchronism
+                    window.setTimeout(
+                        function() {
+                            // We fulfill the promise !
+                            resolve(thisPromiseCount);
+                        }, Math.random() * 2000 + 1000);
+                }
+            );
+        
+            // We define what to do when the promise is resolved with the then() call,
+            // and what to do when the promise is rejected with the catch() call
+            p1.then(
+                // Log the fulfillment value
+                function(val) {
+                    log.insertAdjacentHTML('beforeend', val +
+                        '- Promise fulfilled : Async code terminated<br/>');
+                }).catch(
+                // Log the rejection reason
+               (reason) => {
+                    console.log('Handle rejected promise ('+reason+') here.');
+                });
+        
+            log.insertAdjacentHTML('beforeend', thisPromiseCount +
+                '- Promise made : Sync code terminated<br/>');
+        }if ("Promise" in window) {
+          let btn = document.getElementById("btn");
+          btn.addEventListener("click",testPromise);
+        } else {
+          log = document.getElementById('log');
+          log.innerHTML = "Live example not available as your browser doesn't support the <code>Promise<code> interface.";
+        }
+        </script>
+
+  </body>
+</html>
